@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Логист — профессия будущего | ProLogist</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  :root {
+    --primary: #0f3460;
+    --accent: #e94560;
+    --accent-2: #f5a623;
+    --dark: #16213e;
+    --light: #f4f6fa;
+    --text: #2b2d42;
+    --gray: #6b7280;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text);
+    background: var(--light);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ============ HEADER ============ */
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+  }
+
+  nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.2rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--primary);
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .logo span {
+    color: var(--accent);
+  }
+
+  .logo::before {
+    content: "🚚";
+    font-size: 1.4rem;
+  }
+
+  nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2.5rem;
+  }
+
+  nav ul a {
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.3s;
+    position: relative;
+  }
+
+  nav ul a:hover {
+    color: var(--accent);
+  }
+
+  nav ul a::after {
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: width 0.3s;
+  }
+
+  nav ul a:hover::after {
+    width: 100%;
+  }
+
+  .btn-cta {
+    background: var(--accent);
+    color: white !important;
+    padding: 0.7rem 1.6rem;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(233, 69, 96, 0.3);
+  }
+
+  .btn-cta::after { display: none; }
+
+  .btn-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(233, 69, 96, 0.45);
+    color: white !important;
+  }
+
+  /* ============ HERO ============ */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 60%, #1a4d8f 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 8rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(233, 69, 96, 0.25), transparent 70%);
+    border-radius: 50%;
+  }
+
+  .hero::after {
+    content: "";
+    position: absolute;
+    bottom: -30%;
+    left: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(245, 166, 35, 0.15), transparent 70%);
+    border-radius: 50%;
+  }
+
+  .hero-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 0.5rem 1.2rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(10px);
+  }
+
+  .hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    line-height: 1.1;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    letter-spacing: -1px;
+  }
+
+  .hero h1 span {
+    background: linear-gradient(90deg, var(--accent-2), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero p {
+    font-size: 1.15rem;
+    opacity: 0.9;
+    margin-bottom: 2.5rem;
+    max-width: 560px;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+    box-shadow: 0 8px 25px rgba(233, 69, 96, 0.4);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(233, 69, 96, 0.5);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+  }
+
+  .btn-outline:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: white;
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .stat-card {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    padding: 1.8rem;
+    border-radius: 20px;
+    transition: all 0.4s;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(233, 69, 96, 0.5);
+  }
+
+  .stat-number {
+    font-size: 2.2rem;
+    font-weight: 800;
+    background: linear-gradient(90deg, var(--accent-2), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 0.9rem;
+    opacity: 0.85;
+    margin-top: 0.3rem;
+  }
+
+  /* ============ SECTIONS ============ */
+  section {
+    padding: 6rem 2rem;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-title {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .section-label {
+    color: var(--accent);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .section-title h2 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 800;
+    color: var(--primary);
+    letter-spacing: -0.5px;
+    margin-bottom: 1rem;
+  }
+
+  .section-title p {
+    color: var(--gray);
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  /* ============ ABOUT ============ */
+  .about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  .about-card {
+    background: white;
+    padding: 2.5rem 2rem;
+    border-radius: 20px;
+    box-shadow: 0 4px 30px rgba(15, 52, 96, 0.08);
+    transition: all 0.4s;
+    border-top: 4px solid var(--accent);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about-card:nth-child(2) { border-top-color: var(--accent-2); }
+  .about-card:nth-child(3) { border-top-color: #2ec4b6; }
+
+  .about-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(15, 52, 96, 0.15);
+  }
+
+  .about-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1.2rem;
+    display: block;
+  }
+
+  .about-card h3 {
+    font-size: 1.3rem;
+    color: var(--primary);
+    margin-bottom: 0.8rem;
+    font-weight: 700;
+  }
+
+  .about-card p {
+    color: var(--gray);
+    font-size: 0.98rem;
+  }
+
+  /* ============ CAREER / WHO BECOMES ============ */
+  .career {
+    background: white;
+  }
+
+  .career-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.8rem;
+  }
+
+  .career-card {
+    background: linear-gradient(135deg, #f8fafc, #eef2f7);
+    border-radius: 20px;
+    padding: 2rem;
+    border: 1px solid #e2e8f0;
+    transition: all 0.4s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .career-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    opacity: 0;
+    transition: opacity 0.4s;
+    z-index: 0;
+  }
+
+  .career-card:hover::before { opacity: 1; }
+
+  .career-card > * {
+    position: relative;
+    z-index: 1;
+    transition: color 0.4s;
+  }
+
+  .career-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(15, 52, 96, 0.25);
+  }
+
+  .career-card:hover h3,
+  .career-card:hover p,
+  .career-card:hover .career-num {
+    color: white;
+  }
+
+  .career-num {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--accent);
+    opacity: 0.25;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    transition: color 0.4s, opacity 0.4s;
+  }
+
+  .career-card:hover .career-num {
+    opacity: 1;
+    color: var(--accent-2);
+  }
+
+  .career-card h3 {
+    font-size: 1.2rem;
+    color: var(--primary);
+    margin-bottom: 0.7rem;
+    font-weight: 700;
+  }
+
+  .career-card p {
+    color: var(--gray);
+    font-size: 0.95rem;
+  }
+
+  /* ============ SKILLS ============ */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .skill-item {
+    background: white;
+    padding: 1.8rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(15, 52, 96, 0.06);
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    transition: all 0.3s;
+    border-left: 3px solid transparent;
+  }
+
+  .skill-item:hover {
+    border-left-color: var(--accent);
+    transform: translateX(5px);
+  }
+
+  .skill-icon {
+    font-size: 1.6rem;
+    flex-shrink: 0;
+  }
+
+  .skill-item h4 {
+    color: var(--primary);
+    font-size: 1.05rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .skill-item p {
+    color: var(--gray);
+    font-size: 0.88rem;
+  }
+
+  /* ============ SALARY / GROWTH ============ */
+  .growth {
+    background: linear-gradient(135deg, var(--dark), var(--primary));
+    color: white;
+  }
+
+  .growth .section-title h2 { color: white; }
+  .growth .section-title p { color: rgba(255, 255, 255, 0.8); }
+
+  .growth-timeline {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2rem;
+    position: relative;
+  }
+
+  .growth-step {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 20px;
+    padding: 2rem;
+    transition: all 0.4s;
+    position: relative;
+  }
+
+  .growth-step:hover {
+    transform: translateY(-8px);
+    border-color: var(--accent);
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .growth-level {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent-2);
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+  }
+
+  .growth-step h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.6rem;
+    color: white;
+  }
+
+  .growth-salary {
+    font-size: 1.6rem;
+    font-weight: 800;
+    background: linear-gradient(90deg, var(--accent-2), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0.8rem 0;
+  }
+
+  .growth-step p {
+    font-size: 0.9rem;
+    opacity: 0.85;
+  }
+
+  /* ============ CTA ============ */
+  .cta-section {
+    text-align: center;
+    background: white;
+  }
+
+  .cta-box {
+    max-width: 900px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, var(--accent), #c73650);
+    color: white;
+    padding: 4rem 2rem;
+    border-radius: 30px;
+    box-shadow: 0 25px 60px rgba(233, 69, 96, 0.35);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-box::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 400px;
+    height: 400px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+  }
+
+  .cta-box h2 {
+    font-size: clamp(1.5rem, 3.5vw, 2.3rem);
+    margin-bottom: 1rem;
+    position: relative;
+    font-weight: 800;
+  }
+
+  .cta-box p {
+    font-size: 1.1rem;
+    opacity: 0.95;
+    margin-bottom: 2rem;
+    position: relative;
+  }
+
+  .cta-box .btn {
+    background: white;
+    color: var(--accent);
+    position: relative;
+  }
+
+  .cta-box .btn:hover {
+    background: var(--dark);
+    color: white;
+    transform: translateY(-3px);
+  }
+
+  /* ============ FOOTER ============ */
+  footer {
+    background: var(--dark);
+    color: rgba(255, 255, 255, 0.7);
+    padding: 3rem 2rem 1.5rem;
+    text-align: center;
+  }
+
+  .footer-logo {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 1rem;
+  }
+
+  .footer-logo span { color: var(--accent); }
+
+  footer p {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 1.5rem 0;
+    flex-wrap: wrap;
+  }
+
+  .footer-links a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+  }
+
+  .footer-links a:hover { color: var(--accent); }
+
+  .copyright {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1.5rem;
+    margin-top: 1.5rem;
+    font-size: 0.85rem;
+    opacity: 0.6;
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 900px) {
+    .hero-inner {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    .hero-stats { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 700px) {
+    nav ul { display: none; }
+    section { padding: 4rem 1.2rem; }
+    .hero { padding: 7rem 1.2rem 3rem; }
+    .hero-stats { grid-template-columns: 1fr; }
+    .btn { padding: 0.9rem 1.6rem; font-size: 0.95rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">Pro<span>Logist</span></div>
+    <ul>
+      <li><a href="#about">О профессии</a></li>
+      <li><a href="#career">Карьера</a></li>
+      <li><a href="#skills">Навыки</a></li>
+      <li><a href="#growth">Рост</a></li>
+      <li><a href="#cta" class="btn-cta">Начать</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <span class="hero-badge">Профессия будущего</span>
+      <h1>Стань <span>логистом</span> — управляй движением мира</h1>
+      <p>Логистика — это не просто перевозки. Это стратегия, аналитика и управление цепочками поставок, от которых зависит вся мировая экономика.</p>
+      <div class="hero-buttons">
+        <a href="#career" class="btn btn-primary">Кем ты станешь →</a>
+        <a href="#about" class="btn btn-outline">Узнать больше</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-card">
+        <span class="stat-number">+38%</span>
+        <span class="stat-label">рост спроса на логистов за 5 лет</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">120K+</span>
+        <span class="stat-label">вакансий на рынке СНГ</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">15</span>
+        <span class="stat-label">карьерных направлений</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">5 лет</span>
+        <span class="stat-label">до уровня топ-менеджера</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-title">
+      <span class="section-label">О профессии</span>
+      <h2>Кто такой логист</h2>
+      <p>Специалист, который планирует, организует и контролирует движение товаров, материалов и информации — от поставщика до конечного потребителя.</p>
+    </div>
+    <div class="about-grid">
+      <div class="about-card">
+        <span class="about-icon">📦</span>
+        <h3>Управление потоками</h3>
+        <p>Логист координирует материальные, информационные и финансовые потоки, оптимизируя цепочки поставок и снижая издержки компании.</p>
+      </div>
+      <div class="about-card">
+        <span class="about-icon">📊</span>
+        <h3>Аналитика и стратегия</h3>
+        <p>Работа с данными, прогнозирование спроса, выбор поставщиков и построение эффективных маршрутов — всё это ядро профессии.</p>
+      </div>
+      <div class="about-card">
+        <span class="about-icon">🌍</span>
+        <h3>Глобальный масштаб</h3>
+        <p>Логистика связывает континенты. Специалист работает с международными перевозками, таможней и мультимодальными схемами.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAREER -->
+<section id="career" class="career">
+  <div class="container">
+    <div class="section-title">
+      <span class="section-label">Карьера</span>
+      <h2>Кем ты станешь после обучения</h2>
+      <p>Профессия логиста открывает десятки направлений — от операционной работы до стратегического управления.</p>
+    </div>
+    <div class="career-grid">
+      <div class="career-card">
+        <div class="career-num">01</div>
+        <h3>Логист-операционист</h3>
+        <p>Оформление заявок, работа с перевозчиками, контроль отгрузок. Стартовая позиция для быстрого входа в профессию.</p>
+      </div>
+      <div class="career-card">
+        <div class="career-num">02</div>
+        <h3>Специалист по закупкам</h3>
+        <p>Поиск поставщиков, ведение переговоров, контроль контрактов и оптимизация закупочных процессов.</p>
+      </div>
+      <div class="career-card">
+        <div class="career-num">03</div>
+        <h3>Транспортный логист</h3>
+        <p>Организация перевозок, подбор транспорта, расчёт маршрутов и контроль доставки грузов.</p>
+      </div>
+      <div class="career-card">
+        <div class="career-num">04</div>
+        <h3>Складской логист</h3>
+        <p>Управление складскими процессами, WMS-системами, приёмкой, хранением и комплектацией заказов.</p>
+      </div>
+      <div class="career-card">
+        <div class="career-num">05</div>
+        <h3>ВЭД-специалист</h3>
+        <p>Внешнеэкономическая деятельность: таможенное оформление, международные контракты, импорт и экспорт.</p>
+      </div>
+      <div class="career-card">
+        <div class="career-num">06</div>
+        <h3>Supply Chain Manager</h3>
+        <p>Управление всей цепочкой поставок: от закупки сырья до доставки готового продукта клиенту.</p>
+      </div>
+      <div class="career-card">
+        <div class="career-num">07</div>
+        <h3>Логист-аналитик</h3>
+        <p>Анализ данных, KPI, прогнозирование и построение моделей оптимизации логистических процессов.</p>
+      </div>
+      <div class="career-card">
+        <div class="career-num">08</div>
+        <h3>Директор по логистике</h3>
+        <p>Топ-менеджмент: стратегия, бюджетирование, управление командой и развитие логистической инфраструктуры.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-title">
+      <span class="section-label">Компетенции</span>
+      <h2>Что нужно освоить</h2>
+      <p>Профессиональные навыки, без которых не обходится ни один успешный логист.</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-item">
+        <span class="skill-icon">🧮</span>
+        <div>
+          <h4>1С: TMS / WMS</h4>
+          <p>Учёт и управление транспортными и складскими процессами</p>
+        </div>
+      </div>
+      <div class="skill-item">
+        <span class="skill-icon">📈</span>
+        <div>
+          <h4>Excel / BI</h4>
+          <p>Аналитика, сводные таблицы, дашборды KPI</p>
+        </div>
+      </div>
+      <div class="skill-item">
+        <span class="skill-icon">🗺️</span>
+        <div>
+          <h4>Маршрутизация</h4>
+          <p>Построение оптимальных маршрутов и расчёт себестоимости</p>
+        </div>
+      </div>
+      <div class="skill-item">
+        <span class="skill-icon">⚖️</span>
+        <div>
+          <h4>Таможня и ВЭД</h4>
+          <p>Документооборот, коды ТН ВЭД, Incoterms</p>
+        </div>
+      </div>
+      <div class="skill-item">
+        <span class="skill-icon">🤝</span>
+        <div>
+          <h4>Переговоры</h4>
+          <p>Работа с поставщиками и перевозчиками</p>
+        </div>
+      </div>
+      <div class="skill-item">
+        <span class="skill-icon">🌐</span>
+        <div>
+          <h4>Английский язык</h4>
+          <p>Для международных перевозок и контрактов</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GROWTH -->
+<section id="growth" class="growth">
+  <div class="container">
+    <div class="section-title">
+      <span class="section-label">Развитие</span>
+      <h2>Карьерный рост и доход</h2>
+      <p>Логистика — это одна из немногих сфер, где можно вырасти от стажёра до директора за 5–7 лет.</p>
+    </div>
+    <div class="growth-timeline">
+      <div class="growth-step">
+        <div class="growth-level">Уровень 1</div>
+        <h3>Junior</h3>
+        <div class="growth-salary">40 000 ₽</div>
+        <p>Первый год работы. Обучение на месте, базовые задачи, работа под наставником.</p>
+      </div>
+      <div class="growth-step">
+        <div class="growth-level">Уровень 2</div>
+        <h3>Middle-специалист</h3>
+        <div class="growth-salary">80 000 ₽</div>
+        <p>2–3 года опыта. Самостоятельное ведение процессов и клиентов.</p>
+      </div>
+      <div class="growth-step">
+        <div class="growth-level">Уровень 3</div>
+        <h3>Senior / Lead</h3>
+        <div class="growth-salary">150 000 ₽</div>
+        <p>4–5 лет опыта. Руководство направлением, работа со сложными проектами.</p>
+      </div>
+      <div class="growth-step">
+        <div class="growth-level">Уровень 4</div>
+        <h3>Топ-менеджмент</h3>
+        <div class="growth-salary">250 000 ₽+</div>
+        <p>Директор по логистике / Supply Chain. Стратегия и управление всей функцией.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta" class="cta-section">
+  <div class="container">
+    <div class="cta-box">
+      <h2>Готов начать путь в логистику?</h2>
+      <p>Освой востребованную профессию и открой двери в одну из самых стабильных отраслей мировой экономики.</p>
+      <a href="#" class="btn">Получить консультацию →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Pro<span>Logist</span></div>
+  <p>Образовательный проект о профессии логиста</p>
+  <div class="footer-links">
+    <a href="#about">О профессии</a>
+    <a href="#career">Карьера</a>
+    <a href="#skills">Навыки</a>
+    <a href="#growth">Рост</a>
+  </div>
+  <div class="copyright">© 2025 ProLogist. Все права защищены.</div>
+</footer>
+
+</body>
+</html>
